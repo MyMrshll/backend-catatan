@@ -6,6 +6,9 @@ const cors = require('cors');
 const router = require('./src/routes/userRoutes');
 const marked = require('marked');
 const fs = require('fs');
+const morgan = require('morgan');
+const helmet = require('helmet');
+
 
 app.get('/', (req, res) => {
     res.send('<h1 style = "color:red"> API CATATAN </h1> ')
@@ -18,11 +21,12 @@ app.get('/documentation', (req, res) => {
 })
 
 
-
+app.use(morgan('combined'));
+app.use(helmet());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use('/api', router);
-app.use(cors());
+app.use(cors({ origin: '*' }));
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)

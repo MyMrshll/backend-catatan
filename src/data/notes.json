@@ -1,6 +1,1 @@
-[{
-    "id" : 1,
-    "id_user" : 1,
-    "title" : "First Note",
-    "body" : "This is the first note"
-}]
+[{"id":1,"id_user":1,"title":"Saya Jalan","body":"Jalan ke padang"},{"id":2,"id_user":1,"title":"Saya Makan","body":"Makan rendang"}]
