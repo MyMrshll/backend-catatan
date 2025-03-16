@@ -32,6 +32,11 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/api', router);
 app.use(cors({ origin: '*' }));
 
+
+app.use((req, res) => {
+    res.status(404).json({ message: 'Page Not Found' });
+});
+
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
 })
