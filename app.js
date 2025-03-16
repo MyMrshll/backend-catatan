@@ -8,6 +8,7 @@ const marked = require('marked');
 const fs = require('fs');
 const morgan = require('morgan');
 const helmet = require('helmet');
+const path = require('path');
 
 
 
@@ -17,12 +18,27 @@ app.get('/', (req, res) => {
     res.send('<h1 style = "color:red"> API CATATAN </h1> ')
 })
 
+const docPath = path.join(__dirname, 'documentation.md');
 
+// Optional: ngecek isi file di console
+console.log(fs.readFileSync(docPath, 'utf-8'));
+
+// Endpoint buat akses dokumentasi
 app.get('/documentation', (req, res) => {
-    const htmlContent = marked.parse(fs.readFileSync('./documentation.md', 'utf-8'));
-    res.send(htmlContent)
-})
+    try {
+        // Baca file documentation.md
+        const markdownContent = fs.readFileSync(docPath, 'utf-8');
 
+        // Convert ke HTML
+        const htmlContent = marked.parse(markdownContent);
+
+        // Kirim HTML ke client
+        res.send(htmlContent);
+    } catch (error) {
+        console.error('Error baca documentation.md:', error.message);
+        res.status(500).send('Documentation not found');
+    }
+});
 
 
 app.use(morgan('combined'));
