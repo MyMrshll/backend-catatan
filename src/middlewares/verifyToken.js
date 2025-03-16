@@ -7,19 +7,20 @@ try {
         return res.status(401).json({ message: "Token not found" });
     }
 
-    const token = headers.split(" ")[1];
+    const token =  headers.split(" ")[1];
     
     if (!token) {
         return res.status(401).json({ message: "Token not found" });
     }
 
-    const decodedToken = jwt.verify(token, process.env.JWT_SECRET_KEY);
+    jwt.verify(token, process.env.JWT_SECRET_KEY, (err, decodedToken) => {
+        if (err) {
+            res.status(401).json({ message: "Invalid token" });
+            throw new Error(err);
+        }
+        req.user = decodedToken;
+    });
 
-    if(!decodedToken) {
-        return res.status(401).json({ message: "Invalid token" });
-    }
-
-    req.user = decodedToken;
 
     next();
 } catch (error) {
