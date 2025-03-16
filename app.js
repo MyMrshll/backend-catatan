@@ -5,6 +5,10 @@ const port = process.env.PORT
 const cors = require('cors');
 const router = require('./src/routes/userRoutes');
 
+app.get('/', (req, res) => {
+    res.send('API CATATAN')
+})
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use('/api', router);
