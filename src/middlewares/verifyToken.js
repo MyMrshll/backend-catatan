@@ -15,8 +15,7 @@ try {
 
     jwt.verify(token, process.env.JWT_SECRET_KEY, (err, decodedToken) => {
         if (err) {
-            res.status(401).json({ message: "Invalid token" });
-            throw new Error(err);
+           return res.status(401).json({ message: "Invalid token" });
         }
         req.user = decodedToken;
     });
