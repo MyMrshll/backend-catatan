@@ -33,9 +33,6 @@ app.use('/api', router);
 app.use(cors({ origin: '*' }));
 
 
-app.use((req, res) => {
-    res.status(404).send('Page Not Found');
-});
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
