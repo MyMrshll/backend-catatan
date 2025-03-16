@@ -14,6 +14,11 @@ try {
     }
 
     const decodedToken = jwt.verify(token, process.env.JWT_SECRET_KEY);
+
+    if(!decodedToken) {
+        return res.status(401).json({ message: "Invalid token" });
+    }
+
     req.user = decodedToken;
 
     next();
