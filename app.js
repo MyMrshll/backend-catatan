@@ -6,7 +6,7 @@ const cors = require('cors');
 const router = require('./src/routes/userRoutes');
 
 app.get('/', (req, res) => {
-    res.send('API CATATAN')
+    res.send('<h1 style = "color:red"> API CATATAN </h1> ')
 })
 
 app.use(express.json());
