@@ -3,20 +3,32 @@ const jwt = require("jsonwebtoken");
 const fs = require("fs").promises;
 const path = require("path");
 const { readFile } = require("../utils/fsUtils");
-
+const validator = require("validator");
 const register = async (req, res) => {
   try {
     const { username, password, email } = req.body;
+
+    if (!validator.isEmail(email)) {
+      return res.status(400).json({ message: "Invalid email format" });
+    }
+
+    if (!validator.isStrongPassword(password)) {
+      return res.status(400).json({ message: "Password is not strong enough" });
+    }
 
     if (!username || !password || !email) {
       return res.status(400).json({ message: "All fields are required" });
     }
     const data = await readFile("../data/users.json");
+
+    if (data.find((user) => user.email === email)) {
+      return res.status(400).json({ message: "Email already exists" });
+    }
     data.push({
       id: data.length + 1,
       username,
-      password: await bcrypt.hash(password, 10),
       email,
+      password: await bcrypt.hash(password, 10),
     });
     await fs.writeFile(
       path.join(__dirname, "../data/users.json"),

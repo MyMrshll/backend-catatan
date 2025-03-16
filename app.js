@@ -15,14 +15,11 @@ app.get('/', (req, res) => {
 })
 
 
-app.get('/documentation/auth', (req, res) => {
-    const htmlContent = marked.parse(fs.readFileSync('./AUTH_API.md', 'utf-8'));
+app.get('/documentation', (req, res) => {
+    const htmlContent = marked.parse(fs.readFileSync('./documentation.md', 'utf-8'));
     res.send(htmlContent)
 })
-app.get('/documentation/notes', (req, res) => {
-    const htmlContent = marked.parse(fs.readFileSync('./NOTES_API.md', 'utf-8'));
-    res.send(htmlContent)
-})
+
 
 
 app.use(morgan('combined'));
