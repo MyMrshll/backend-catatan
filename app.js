@@ -10,6 +10,10 @@ const morgan = require('morgan');
 const helmet = require('helmet');
 
 
+console.log('✅ JWT_SECRET_KEY:', process.env.JWT_SECRET_KEY);
+
+
+
 app.get('/', (req, res) => {
     res.send('<h1 style = "color:red"> API CATATAN </h1> ')
 })
