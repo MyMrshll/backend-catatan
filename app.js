@@ -34,7 +34,7 @@ app.use(cors({ origin: '*' }));
 
 
 app.use((req, res) => {
-    res.status(404).json({ message: 'Page Not Found' });
+    res.status(404).send('Page Not Found');
 });
 
 app.listen(port, () => {
