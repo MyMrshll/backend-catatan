@@ -12,18 +12,14 @@ const path = require('path');
 
 
 
-
-
 app.get('/', (req, res) => {
     res.send('<h1 style = "color:red"> API CATATAN </h1> ')
 })
 
-const docPath = path.join(__dirname, 'documentation.md');
 
-// Optional: ngecek isi file di console
-console.log(fs.readFileSync(docPath, 'utf-8'));
 
 // Endpoint buat akses dokumentasi
+const docPath = path.join(__dirname, 'documentation.md');
 app.get('/documentation', (req, res) => {
     try {
         // Baca file documentation.md

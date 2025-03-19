@@ -1,7 +1,6 @@
 const fs = require("fs").promises;
 const path = require("path");
 const { readFile } = require("../utils/fsUtils");
-const { log } = require("console");
 
 const getNotes = async (req, res) => {
   try {
@@ -15,6 +14,9 @@ const getNotes = async (req, res) => {
     });
   } catch (error) {
     console.error(error);
+    if (res.headersSent) {
+      return; // Response udah dikirim, gak usah ngapa-ngapain
+    }
     res.status(500).json({ message: "Internal server error" });
   }
 };
@@ -33,6 +35,9 @@ const createNote = async (req, res) => {
     res.status(201).json({ message: "Note created successfully" });
   } catch (error) {
     console.error(error);
+    if (res.headersSent) {
+      return; // Response udah dikirim, gak usah ngapa-ngapain
+    }
     res.status(500).json({ message: "Internal server error" });
   }
 };
@@ -40,7 +45,6 @@ const createNote = async (req, res) => {
 const deleteNote = async (req, res) => {
   try {
     const { id } = req.params;
-    console.log(req.user);
 
     const data = await readFile("../data/notes.json");
     const notes = data.filter((note) => note.id != id);
@@ -62,6 +66,9 @@ const deleteNote = async (req, res) => {
     res.status(200).json({ message: "Note deleted successfully" });
   } catch (error) {
     console.error(error);
+    if (res.headersSent) {
+      return; // Response udah dikirim, gak usah ngapa-ngapain
+    }
     res.status(500).json({ message: "Internal server error" });
   }
 };
@@ -91,6 +98,9 @@ const updateNote = async (req, res) => {
     res.status(200).json({ message: "Note updated successfully" });
   } catch (error) {
     console.error(error);
+    if (res.headersSent) {
+      return; // Response udah dikirim, gak usah ngapa-ngapain
+    }
     res.status(500).json({ message: "Internal server error" });
   }
 };

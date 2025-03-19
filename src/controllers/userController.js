@@ -39,6 +39,9 @@ const register = async (req, res) => {
     });
   } catch (error) {
     console.error(error);
+    if (res.headersSent) {
+      return; // Response udah dikirim, gak usah ngapa-ngapain
+    }
     res.status(500).json({ message: "Internal server error" });
   }
 };
@@ -65,6 +68,9 @@ const login = async (req, res) => {
     });
   } catch (error) {
     console.error(error);
+    if (res.headersSent) {
+      return; // Response udah dikirim, gak usah ngapa-ngapain
+    }
     res.status(500).json({ message: "Internal server error" });
   }
 };
