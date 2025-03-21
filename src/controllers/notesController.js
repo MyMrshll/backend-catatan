@@ -26,7 +26,7 @@ const createNote = async (req, res) => {
     const { id, username, email } = req.user;
     const id_user = id;
     const { title, body } = req.body;
-    if(!id_user, !username, !email) {
+    if(!id_user, !title, !body) {
     return res.status(401).json({message : 'the field cannot be empty'})
     }
     const data = await readFile("../data/notes.json");
