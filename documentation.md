@@ -8,6 +8,7 @@ Dokumentasi untuk endpoint `register` dan `login` pada aplikasi backend-catatan.
 ## 🔗 Endpoints  
 - `POST /api/register`  
 - `POST /api/login`
+- `GET /api/users`
 
 ---
 
@@ -119,6 +120,25 @@ Login pengguna ke sistem dan mendapatkan token JWT jika berhasil.
 }
 ```
 
+##  `POST /api/login`
+
+### Deskripsi  
+Menampilkan semua users jika user di set admin oleh developer
+
+### Response  
+#### Success (200)  
+```json
+{
+  "message": "Login successful",
+  "data": ""
+}
+```
+#### Error (403)  
+```json
+{
+  "message": "Forbidden: Admin access required"
+}
+```
 
 
 
