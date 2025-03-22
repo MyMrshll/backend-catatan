@@ -102,7 +102,8 @@ Login pengguna ke sistem dan mendapatkan token JWT jika berhasil.
 ```json
 {
   "message": "Login successful",
-  "token": "<jwt_token>"
+  "token": "<jwt_token>",
+  "username" : "<username>"
 }
 ```
 
