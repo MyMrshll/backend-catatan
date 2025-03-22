@@ -75,4 +75,21 @@ const login = async (req, res) => {
   }
 };
 
-module.exports = { register, login };
+
+const getUsers = async (req, res) => {
+  try {
+    const data = await readFile("../data/users.json");
+    res.json({
+      message: "Users retrieved successfully",
+      data,
+    });
+  } catch (error) {
+    console.error(error);
+    if (res.headersSent) {
+      return; // Response udah dikirim, gak usah ngapa-ngapain
+    }
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+module.exports = { register, login , getUsers};

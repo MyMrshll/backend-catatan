@@ -1,8 +1,1 @@
-[
-  {
-    "id": 1,
-    "username": "ferta",
-    "password": "$2b$10$Dt.8OGk8Sziyfn2Oio80wu5RnnuOI9sRZll7YSNa1G5g/9ZHIrDXS",
-    "email": "ferta@gmail.com"
-  }
-]
+[{"id":1,"username":"ferta","password":"$2b$10$Dt.8OGk8Sziyfn2Oio80wu5RnnuOI9sRZll7YSNa1G5g/9ZHIrDXS","email":"ferta@gmail.com"},{"id":2,"username":"reval","email":"reval@gmail.com","password":"$2b$10$V1MLMiqByV1M5qpFIAlk8u4B34jcxWSXHHnyLUfv3OcOrRJ2splk2"}]
